@@ -1,0 +1,97 @@
+# include "datos.h"
+
+int i=0;
+int j=0;
+String dato;
+int suma=0;
+int dat;
+int numero;
+int cont=0;
+int total=0;
+int promedio=0;
+int multiplicacion=1;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+ // Serial.println("ingrese A si desea la suma de cada fila");
+//  Serial.println("ingrese B si desea la multiplicacion de cada columna");
+  //Serial.println("ingrese C si desea el promedio de todas las columnas");
+//dato=Serial.readString();
+dat=Serial.read();
+switch(dat){
+  case 'A':
+  
+  for(;j<20;j++)
+  {
+    for (;i<3;i++)
+      {
+        numero=matriz[j][i];
+        suma=suma+numero;
+     delay(100);
+       }
+       Serial.print("Suma fila ");
+       Serial.print(j);
+       Serial.print(": ");
+         Serial.println(suma);
+         suma=0;
+       i=0;
+  }
+  break;
+  case 'B':
+ for(;j<3;j++)
+  {
+    for (;i<20;i++)
+      {
+        numero=matriz[i][j];
+        suma=suma+numero;
+            }
+         total=total+suma;
+         suma=0;
+         i=0;
+         
+  }
+   promedio=total/3;
+   Serial.print("El promedio es: ");
+   Serial.print(promedio);
+
+break;
+
+
+  
+  case 'C':
+ for(j=0;j<3;j++)
+  {
+ float n=10;
+ float multiplicacion=1;
+ 
+    for (i=0;i<20;i++)
+      {
+    Serial.print("Fila ");
+    Serial.print(i);
+    Serial.print("= ");
+    Serial.print(multiplicacion,3);
+    Serial.print(" * ");
+    Serial.print(matriz[i][j]/n);
+   multiplicacion = (multiplicacion) * (matriz[i][j]/n);
+    Serial.print(" = ");
+    Serial.println(multiplicacion,6);
+       
+       }
+         
+      Serial.println(" ");
+  Serial.print("Resultado de la columna ");
+  Serial.print(j);
+  Serial.println(": ");
+ Serial.print( multiplicacion,6);
+  Serial.println("*10^20");
+  Serial.println(" ");
+     }
+  break;
+  
+
+}
+}
